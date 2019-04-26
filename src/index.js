@@ -2,16 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
+// class Square extends React.Component {
+//   render() {
+//     return (
+//       <button
+//         className="square"
+//         onClick={() => this.props.onClick()}
+//       >
+//         {this.props.value}
+//       </button>
+//     );
+//   }
+// }
+
+function Square(props){
+  return(
+    <button
+      className="square"
+      onClick={props.onClick}>
       {props.value}
     </button>
-  );
+
+  )
 }
 
 class Board extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       squares: Array(9).fill(null),
@@ -41,6 +57,7 @@ class Board extends React.Component {
   }
 
   render() {
+    //const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
