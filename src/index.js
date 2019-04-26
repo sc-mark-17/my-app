@@ -5,16 +5,40 @@ import './index.css';
 class Square extends React.Component {
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      <button
+        className="square"
+        onClick={() => this.props.onClick()}
+      >
+        {this.props.value}
       </button>
     );
   }
 }
 
 class Board extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      square: Array(9).fill(null),
+    };
+  }
+
+handleClick(i){
+  //se llama al metodo slice para hacer copia del array square
+  const square = this.state.square.slice();
+  square[i] = 'X';
+  this.setState({
+    square: square
+  });
+}
+
   renderSquare(i) {
-    return <Square />;
+    return (
+      <Square
+        value={this.state.square[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
